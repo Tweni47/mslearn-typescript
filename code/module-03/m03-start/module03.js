@@ -1,26 +1,25 @@
-"use strict";
 /* Module 3: Implement interfaces in TypeScript
    Lab Start  */
 /*  TODO: Update the calculateInterestOnlyLoanPayment function. */
 function calculateInterestOnlyLoanPayment(loanTerms) {
     // Calculates the monthly payment of an interest only loan
-    let interest = loanTerms.interestRate / 1200; // Calculates the Monthly Interest Rate of the loan
-    let payment = loanTerms.principle * interest;
+    var interest = loanTerms.interestRate / 1200; // Calculates the Monthly Interest Rate of the loan
+    var payment = loanTerms.principle * interest;
     return "The interest only loan payment is " + payment.toFixed(2);
 }
 /*  TODO: Update the calculateConventionalLoanPayment function. */
 function calculateConventionalLoanPayment(loanTerms) {
     // Calculates the monthly payment of a conventional loan
-    let interest = loanTerms.interestRate / 1200; // Calculates the Monthly Interest Rate of the loan
-    let payment = (loanTerms.principle * interest) /
+    var interest = loanTerms.interestRate / 1200; // Calculates the Monthly Interest Rate of the loan
+    var payment = (loanTerms.principle * interest) /
         (1 - Math.pow(1 / (1 + interest), loanTerms.months));
     return "The conventional loan payment is " + payment.toFixed(2);
 }
-let interestOnlyPayment = calculateInterestOnlyLoanPayment({
+var interestOnlyPayment = calculateInterestOnlyLoanPayment({
     principle: 30000,
     interestRate: 5,
 });
-let conventionalPayment = calculateConventionalLoanPayment({
+var conventionalPayment = calculateConventionalLoanPayment({
     principle: 30000,
     interestRate: 5,
     months: 180,
