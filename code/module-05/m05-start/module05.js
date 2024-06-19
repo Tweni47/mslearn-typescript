@@ -1,14 +1,13 @@
-"use strict";
 /*  Module 5: Declare and instantiate classes in TypeScript
     Lab Start  */
 /*  EXERCISE 1 */
-class BuildArray {
+var BuildArray = /** @class */ (function () {
     // TODO Define the constructor
-    constructor(items, sortOrder) {
+    function BuildArray(items, sortOrder) {
         // TODO Define the methods
         /*  sortDescending is a comparison function that tells the sort method how to sort numbers
           in descending order. */
-        this.sortDescending = (a, b) => {
+        this.sortDescending = function (a, b) {
             if (a > b) {
                 return -1;
             }
@@ -21,7 +20,7 @@ class BuildArray {
         };
         /*  sortAscending is a comparison function that tells the sort method how to sort numbers
           in ascending order. */
-        this.sortAscending = (a, b) => {
+        this.sortAscending = function (a, b) {
             if (a > b) {
                 return 1;
             }
@@ -35,26 +34,34 @@ class BuildArray {
         this._items = items;
         this._sortOrder = sortOrder;
     }
-    // TODO Define the accessors
-    get items() {
-        return this._items;
-    }
-    set items(items) {
-        this._items = items;
-    }
-    get sortOrder() {
-        return this._sortOrder;
-    }
-    set sortOrder(sortOrder) {
-        this._sortOrder = sortOrder;
-    }
+    Object.defineProperty(BuildArray.prototype, "items", {
+        // TODO Define the accessors
+        get: function () {
+            return this._items;
+        },
+        set: function (items) {
+            this._items = items;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(BuildArray.prototype, "sortOrder", {
+        get: function () {
+            return this._sortOrder;
+        },
+        set: function (sortOrder) {
+            this._sortOrder = sortOrder;
+        },
+        enumerable: false,
+        configurable: true
+    });
     /*  buildArray builds an array of unique random numbers containing the number of items
       based on the number passed to it. The sortOrder parameter determines whether to sort
       the array in ascending or descending order. */
-    buildArray() {
-        let randomNumbers = [];
-        let nextNumber;
-        for (let counter = 0; counter < this.items; counter++) {
+    BuildArray.prototype.buildArray = function () {
+        var randomNumbers = [];
+        var nextNumber;
+        for (var counter = 0; counter < this.items; counter++) {
             nextNumber = Math.ceil(Math.random() * (100 - 1));
             if (randomNumbers.indexOf(nextNumber) === -1) {
                 randomNumbers.push(nextNumber);
@@ -69,10 +76,11 @@ class BuildArray {
         else {
             return randomNumbers.sort(this.sortDescending);
         }
-    }
-}
+    };
+    return BuildArray;
+}());
 /*  TODO: Instantiate the BuildArray objects. */
-let testArray1 = new BuildArray(12, "ascending");
-let testArray2 = new BuildArray(8, "descending");
+var testArray1 = new BuildArray(12, "ascending");
+var testArray2 = new BuildArray(8, "descending");
 console.log(testArray1.buildArray());
 console.log(testArray2.buildArray());
